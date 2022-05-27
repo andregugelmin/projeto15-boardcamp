@@ -13,7 +13,6 @@ export async function getCategories(req, res) {
 
 export async function postCategory(req, res) {
     const newCategorie = res.locals.category;
-    console.log(chalk.bold.yellow('Posting Category'));
     try {
         const result = await db.query(
             `

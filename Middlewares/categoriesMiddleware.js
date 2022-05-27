@@ -15,7 +15,6 @@ export async function joiValidationCategory(req, res, next) {
     );
 
     if (validation.error) {
-        console.log(validation.error.details);
         res.status(400).send({
             message: 'Invalid category name',
             details: validation.error.details.map((e) => e.message),
