@@ -1,7 +1,6 @@
 import joi from 'joi';
 import { stripHtml } from 'string-strip-html';
 import db from '../db.js';
-import chalk from 'chalk';
 
 export async function joiValidationGame(req, res, next) {
     let { name, image, stockTotal, categoryId, pricePerDay } = req.body;

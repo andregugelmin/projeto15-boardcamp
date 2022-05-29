@@ -20,13 +20,12 @@ export async function getGames(req, res) {
                   FROM games 
                   JOIN categories 
                   ON games."categoryId" = categories.id 
-                  WHERE games.name LIKE $1%;`,
-                  [name.toLowerCase()]
+                  WHERE LOWER(games.name) LIKE '${name.toLowerCase()}%';`
               );
-        res.send(result.rows);
+        return res.send(result.rows);
     } catch (e) {
-        res.sendStatus(500);
         console.error(chalk.bold.red('Could not get games'), e);
+        return res.sendStatus(500);
     }
 }
 
@@ -46,6 +45,9 @@ export async function postGame(req, res) {
                 newGame.pricePerDay,
             ]
         );
-    } catch (e) {}
+    } catch (e) {
+        console.error(chalk.bold.red('Could not post game'), e);
+        return res.sendStatus(500);
+    }
     return res.sendStatus(201);
 }
