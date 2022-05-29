@@ -9,6 +9,7 @@ const Joi = joi.extend(DateExtension);
 export async function joiValidationCustomer(req, res, next) {
     let { name, phone, cpf, birthday } = req.body;
     name = stripHtml(name).result.trim();
+    if (birthday.length > 10) birthday = birthday.slice(0, 10);
 
     const customerSchema = joi.object({
         name: joi.string().required(),

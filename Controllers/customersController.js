@@ -26,7 +26,7 @@ export async function getCustomerByID(req, res) {
             `SELECT * FROM customers
                 WHERE customers.id = ${id};`
         );
-        if (result.rows.length > 0) return res.send(result.rows);
+        if (result.rows.length > 0) return res.send(result.rows[0]);
         else return res.send('Client not found').status(404);
     } catch (e) {
         res.sendStatus(500);
