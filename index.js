@@ -1,6 +1,5 @@
 import express, { json } from 'express';
 import cors from 'cors';
-import chalk from 'chalk';
 import categoriesRouter from './Routers/categoriesRouter.js';
 import gamesRouter from './Routers/gamesRouter.js';
 import customersRouter from './Routers/customersRouter.js';
@@ -15,6 +14,6 @@ app.use(gamesRouter);
 app.use(customersRouter);
 app.use(rentalsRouter);
 
-app.listen(4000, () => {
-    console.log(chalk.bold.green('Server running on port 4000'));
+app.listen(process.env.PORT, () => {
+    console.log('Server running on port ' + process.env.PORT);
 });
